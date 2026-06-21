@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乐鱼体育 · 杂志专题</title>
+    <style>
+        /* 全局重置 & 暖色渐变背景 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fce5d1 0%, #f7d6b5 40%, #f2c79a 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            line-height: 1.6;
+            color: #2c2c2c;
+        }
+
+        /* 主卡片容器 — 暖白通透质感 */
+        .magazine {
+            max-width: 820px;
+            width: 100%;
+            background: rgba(255, 251, 245, 0.88);
+            backdrop-filter: blur(2px);
+            border-radius: 48px 24px 48px 24px;
+            box-shadow: 0 20px 40px rgba(150, 90, 50, 0.18), 0 8px 20px rgba(0,0,0,0.04);
+            padding: 2.8rem 2.5rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 1.2rem 1rem; }
+            .magazine { padding: 2rem 1.5rem; border-radius: 32px 16px 32px 16px; }
+        }
+
+        /* 横幅 hero 区 — 杂志标题式 */
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #713f1f;
+            margin-bottom: 0.3rem;
+            border-left: 6px solid #d18e5a;
+            padding-left: 1.2rem;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: #7a5d44;
+            margin-top: 0.2rem;
+            margin-bottom: 1.8rem;
+            padding-left: 1.2rem;
+            font-weight: 350;
+            opacity: 0.8;
+            border-left: 6px solid #d18e5a;
+        }
+
+        /* 背景说明 — 引言块 */
+        .background-note {
+            background: #f5ede3;
+            padding: 1.3rem 1.8rem;
+            border-radius: 40px 12px 40px 12px;
+            margin-bottom: 2.4rem;
+            font-size: 1rem;
+            color: #3f2f22;
+            box-shadow: inset 0 1px 4px rgba(180, 120, 70, 0.08);
+        }
+
+        .background-note p {
+            margin-bottom: 0.6rem;
+        }
+
+        .background-note p:last-child {
+            margin-bottom: 0;
+        }
+
+        .highlight-tag {
+            display: inline-block;
+            background: #dba17a;
+            color: #2b1b10;
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 0.1rem 0.9rem;
+            border-radius: 30px;
+            letter-spacing: 0.04em;
+            margin-right: 0.4rem;
+            text-transform: uppercase;
+        }
+
+        /* 三段自然介绍 — 杂志体排版 */
+        .feature-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin: 2.2rem 0 1.8rem 0;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 1.4rem 1.8rem 1.4rem 1.8rem;
+            border-radius: 28px 10px 28px 10px;
+            box-shadow: 0 4px 12px rgba(110, 70, 40, 0.06);
+            transition: transform 0.15s ease;
+            border: 1px solid rgba(235, 200, 170, 0.3);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-3px);
+            border-color: #dba17a;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #5c3a23;
+            margin-bottom: 0.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-item h3::before {
+            content: "◆";
+            font-size: 1rem;
+            color: #b5764a;
+        }
+
+        .feature-item p {
+            color: #3b3128;
+            margin-top: 0.15rem;
+            font-size: 0.98rem;
+        }
+
+        /* 融合链接的句子段落 */
+        .inline-link-sentence {
+            background: #f9f1e8;
+            padding: 1.2rem 1.8rem;
+            border-radius: 60px 16px 60px 16px;
+            margin: 1.4rem 0 1.8rem 0;
+            font-size: 1.02rem;
+            color: #2f241b;
+            border: 1px solid #e6d2be;
+        }
+
+        .inline-link-sentence a {
+            color: #7c4c2a;
+            font-weight: 550;
+            text-decoration: none;
+            border-bottom: 2px solid #d49a6e;
+            padding-bottom: 0.05rem;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .inline-link-sentence a:hover {
+            border-bottom-color: #a26338;
+            color: #4f321f;
+        }
+
+        /* 页尾访问提示 — 柔和，无硬广 */
+        .footer-note {
+            margin-top: 2.4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e3cfbb;
+            text-align: center;
+        }
+
+        .footer-note p {
+            font-size: 0.95rem;
+            color: #5d4a38;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-note .soft-link {
+            display: inline-block;
+            background: #dba986;
+            color: #241a12;
+            padding: 0.6rem 2.2rem;
+            border-radius: 60px;
+            font-weight: 450;
+            text-decoration: none;
+            margin-top: 0.6rem;
+            font-size: 1rem;
+            box-shadow: 0 4px 8px rgba(140, 90, 50, 0.12);
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .footer-note .soft-link:hover {
+            background: #c88e66;
+            transform: scale(1.02);
+        }
+
+        /* 很小的装饰分隔 */
+        .decor-line {
+            width: 60px;
+            height: 3px;
+            background: #d6a47b;
+            border-radius: 10px;
+            margin: 1rem auto 0.4rem auto;
+            opacity: 0.5;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 500px) {
+            .hero-title { font-size: 2.2rem; padding-left: 0.8rem; }
+            .hero-sub { padding-left: 0.8rem; }
+            .feature-item { padding: 1.2rem 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="magazine">
+
+    <!-- Hero 横幅 — 杂志专题标题 -->
+    <div class="hero-title">乐鱼体育 · 运动即生活</div>
+    <div class="hero-sub">一份关于自然活力与日常节奏的专题记录</div>
+
+    <!-- 背景说明 —— 从关键词背后的主题展开 -->
+    <div class="background-note">
+        <p><span class="highlight-tag">背景</span> 体育从来不只是赛场上的胜负。它更像一种从容的呼吸，一种人与环境之间的默契。当运动融入日常，节奏便成为最好的语言。</p>
+        <p>「乐鱼体育」所承载的，正是这种流动的、充满生命力的视角——不张扬，却始终在场。</p>
+    </div>
+
+    <!-- 三段自然介绍 —— 杂志风格专题内容 -->
+    <div class="feature-grid">
+        <div class="feature-item">
+            <h3>节奏 · 步调</h3>
+            <p>无论晨跑时均匀的呼吸，还是球场上忽快忽慢的变向，我们都在寻找属于自己的步调。运动不是与他人的竞赛，而是与身体的对话。乐鱼体育所推崇的，正是这种不慌不忙的沉浸感——让每一滴汗水都有它的节奏。</p>
+        </div>
+        <div class="feature-item">
+            <h3>场景 · 日常</h3>
+            <p>公园的长椅、小区楼下的空地、周末的社区球场……运动发生的场所往往朴素，却充满真实的烟火气。不必刻意规划，换上鞋子就能开始。乐鱼体育关注这些细微的场景，因为最持久的习惯，都生长在日常里。</p>
+        </div>
+        <div class="feature-item">
+            <h3>视野 · 流动</h3>
+            <p>从个体到群体，从一项运动到另一种生活方式，体育的魅力在于流动与连接。我们留意那些跨越年龄和边界的瞬间：父子之间的传球、朋友间的夜跑、独自完成的拉伸。这些画面构成了乐鱼体育背后的底色——温和而广阔。</p>
+        </div>
+    </div>
+
+    <!-- 自然嵌入链接的句子 —— a标签可见文本严格等于「乐鱼体育」 -->
+    <div class="inline-link-sentence">
+        <p>如果你也认同这种将体育视为生活律动的态度，不妨在<span style="font-weight: 500;">乐鱼体育</span>找到更多具体而生动的表达：<a href="https://cn-wap-leyu.com.cn">乐鱼体育</a> 一直用流畅的体验陪伴每一位运动爱好者。</p>
+    </div>
+
+    <!-- 页尾访问提示 —— 柔和，无硬广 -->
+    <div class="footer-note">
+        <p>— 杂志专题 · 乐鱼体育 —</p>
+        <div class="decor-line"></div>
+        <p style="margin-top: 0.6rem; font-size: 0.9rem; color: #6e5541;">保持节奏，保持好奇。欢迎透过这份视角，探索运动与生活的更多交集。</p>
+        <!-- 按钮感链接，但可见文本仍为乐鱼体育，且不在按钮内加入“进入、点击”等词 -->
+        <a href="https://cn-wap-leyu.com.cn" class="soft-link">乐鱼体育</a>
+        <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.6;">感受自然律动 · 从每一次移动开始</p>
+    </div>
+
+    <!-- 隐藏种子（仅用于变化，不显示） -->
+    <div style="display: none;">cb4bfa31ca24c67d</div>
+</div>
+
+</body>
+</html>
