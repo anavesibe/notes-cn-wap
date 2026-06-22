@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>球探体育 · 信息整合页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #faf9f8;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1e1e2a;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3.5rem 1.5rem 4rem;
+        }
+
+        /* hero */
+        .hero {
+            margin-bottom: 4rem;
+            border-left: 5px solid #2b3b4c;
+            padding-left: 1.6rem;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #16161d;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #4a4a5a;
+            max-width: 34em;
+            border-bottom: 1px solid #e1dfdc;
+            padding-bottom: 0.8rem;
+        }
+
+        /* 通用标题 */
+        h2 {
+            font-size: 1.6rem;
+            font-weight: 450;
+            margin: 3rem 0 1.2rem;
+            letter-spacing: -0.01em;
+            color: #22222b;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: #dedbd6;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: #2d2d39;
+        }
+
+        a {
+            color: #1f4e6f;
+            text-decoration: none;
+            border-bottom: 1px solid #b7cddb;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: #1f4e6f;
+            color: #0f3047;
+        }
+
+        .link-plain {
+            border-bottom: none;
+            font-weight: 500;
+        }
+
+        /* 优势卡片 */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.8rem 1.2rem;
+            margin: 2rem 0 1.5rem;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 1.6rem 1.2rem 1.4rem;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 0 0 1px #edeae6 inset;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: #1e2c38;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            margin-bottom: 0;
+            color: #3e3e4e;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #eef2f5;
+            font-size: 0.75rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 30px;
+            letter-spacing: 0.3px;
+            color: #2b3f50;
+            margin-bottom: 0.5rem;
+        }
+
+        /* 说明区 (场景 + 整合) */
+        .scene-block {
+            background: #f5f3f0;
+            padding: 2rem 2rem 1.6rem;
+            border-radius: 22px;
+            margin: 2.2rem 0;
+        }
+
+        .scene-block p {
+            margin-bottom: 0.7rem;
+        }
+
+        .scene-block strong {
+            color: #182c3b;
+            font-weight: 530;
+        }
+
+        .bullet-list {
+            list-style: none;
+            margin: 1rem 0 0.8rem;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 1.6rem;
+            margin-bottom: 0.5rem;
+            color: #2d2d3b;
+        }
+
+        .bullet-list li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: #6a7a88;
+        }
+
+        /* faq 摘要 */
+        .faq-mini {
+            margin: 2.6rem 0 1.8rem;
+            border-top: 1px solid #e4e0db;
+            padding-top: 1.8rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .faq-q {
+            font-weight: 520;
+            color: #1f2d39;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            color: #3e4252;
+            padding-left: 0.8rem;
+            border-left: 3px solid #cdd7df;
+            padding-left: 1rem;
+            font-size: 0.96rem;
+        }
+
+        .footnote {
+            margin-top: 3.5rem;
+            padding-top: 1.2rem;
+            border-top: 1px solid #e2ddd7;
+            font-size: 0.9rem;
+            color: #4e4e5e;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.6rem;
+        }
+
+        .footnote span {
+            white-space: nowrap;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2ded9;
+            margin: 2.4rem 0;
+        }
+
+        /* 响应式 */
+        @media (max-width: 600px) {
+            .page {
+                padding: 2rem 1.2rem 3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .card {
+                padding: 1.2rem 1rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .scene-block {
+                padding: 1.5rem 1.2rem;
+                border-radius: 16px;
+            }
+        }
+
+        @media (max-width: 440px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .hero .sub {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+
+        <!-- hero -->
+        <div class="hero">
+            <h1>球探体育 · 信息、数据与视角</h1>
+            <div class="sub">不论关注赛事、球队动态还是竞技趋势，体系化的信息工具始终是核心支撑。</div>
+        </div>
+
+        <!-- 优势区 三卡片 -->
+        <div class="grid-3">
+            <div class="card">
+                <div class="tag">整合</div>
+                <h3>多源聚合</h3>
+                <p>联赛、杯赛、青年赛事等数据汇总于统一界面，减少切换成本，便于横向对比。</p>
+            </div>
+            <div class="card">
+                <div class="tag">结构</div>
+                <h3>清晰层级</h3>
+                <p>从宏观积分到微观球员统计，以可筛选的方式呈现，提升信息吸收效率。</p>
+            </div>
+            <div class="card">
+                <div class="tag">节奏</div>
+                <h3>更新频率</h3>
+                <p>关键比赛日数据同步、实时比分与基本事件记录，帮助保持对赛况的跟随。</p>
+            </div>
+        </div>
+
+        <!-- 说明区 —— 场景+特点 -->
+        <h2>覆盖哪些场景</h2>
+        <p>从职业联赛到次级梯队，从历史交锋记录到近期状态曲线，<a href="https://show-scouting.com" class="link-plain">球探体育</a>试图将分散的竞技数据整理为更易用的结构。使用者可以快速浏览某支球队的阵容厚度、战术倾向或赛季走势，而不必在多个平台之间反复跳转。</p>
+
+        <div class="scene-block">
+            <p><strong>几个常见的切入方式：</strong></p>
+            <ul class="bullet-list">
+                <li>查看俱乐部近期三场比赛的控球率、射门分布与关键传球</li>
+                <li>根据联赛排名与净胜球趋势，判断一支球队的竞技状态是否出现拐点</li>
+                <li>对比两名球员在相似出场时间下的进球与助攻效率，辅助分析角色定位</li>
+                <li>了解青年队或预备队的不败纪录，以及核心球员是否被调入一线队大名单</li>
+            </ul>
+            <p style="margin-top: 0.8rem;">这些数据本身不提供绝对结论，但可以成为讨论或判断的参考锚点。</p>
+        </div>
+
+        <!-- 另一层说明 —— 一点提示 -->
+        <h2>数据的边界</h2>
+        <p>任何统计系统都受限于采集范围与更新延迟。比赛事件的判定、首发阵容的临时调整、伤病的突发性，都会影响面板数值的解读。建议将平台数据视为辅助线索，而非唯一依据。真正的判断仍然依赖于对比赛本身的理解。</p>
+
+        <!-- FAQ 摘要 (3组) -->
+        <div class="faq-mini">
+            <div class="faq-item">
+                <div class="faq-q">FAQ · 是否需要注册才能浏览基础数据？</div>
+                <div class="faq-a">大部分联赛的积分榜、赛程和基础统计可以直接查看，部分进阶筛选或自定义对比功能可能需要简单注册。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">FAQ · 数据覆盖哪些联赛与赛事？</div>
+                <div class="faq-a">涵盖欧洲主流联赛、二级联赛、杯赛以及部分亚洲与美洲赛事，具体列表可在数据目录中查阅。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">FAQ · 数据更新是否有固定频率？</div>
+                <div class="faq-a">常规比赛日会在赛后数小时内完成基础统计更新；实时数据（如比分）在比赛进行中同步。</div>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- 底部链接/ 自然嵌入 -->
+        <p style="font-size: 0.96rem;">如果希望进一步了解数据组织方式或浏览当前赛季的球队档案，可以前往 <a href="https://show-scouting.com">球探体育</a> 查看。页面保持简洁，没有过多装饰性干扰，重心始终落在信息本身。</p>
+
+        <div class="footnote">
+            <span>基于开源数据与自有整理</span>
+            <span>· 建议桌面端获得更完整布局</span>
+            <span>· 持续迭代</span>
+        </div>
+
+    </div>
+</body>
+</html>
